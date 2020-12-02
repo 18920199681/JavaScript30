@@ -1,0 +1,103 @@
+<html>
+
+<head>
+	<title>击鼓</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+	<div class="drum-container">
+		<div class="keys-body"></div>
+		<div class="sounds-body"></div>
+	</div>
+</body>
+
+<script text="javascript">
+	const keysData = [
+		{
+			keyCode: 65,
+			keyName: "A",
+			soundName: "BOOM",
+			soundSrc: "../sounds/boom.wav",
+		},
+		{
+			keyCode: 83,
+			keyName: "S",
+			soundName: "CLAP",
+			soundSrc: "../sounds/clap.wav"
+		},
+		{
+			keyCode: 68,
+			keyName: "D",
+			soundName: "HIHAT",
+			soundSrc: "../sounds/hihat.wav"
+		},
+		{
+			keyCode: 70,
+			keyName: "F",
+			soundName: "KICK",
+			soundSrc: "../sounds/kick.wav"
+		},
+		{
+			keyCode: 71,
+			keyName: "G",
+			soundName: "OPENHAT",
+			soundSrc: "../sounds/openhat.wav"
+		},
+		{
+			keyCode: 72,
+			keyName: "H",
+			soundName: "RIDE",
+			soundSrc: "../sounds/ride.wav"
+		},
+		{
+			keyCode: 74,
+			keyName: "J",
+			soundName: "SNARE",
+			soundSrc: "../sounds/snare.wav"
+		},
+		{
+			keyCode: 75,
+			keyName: "K",
+			soundName: "TINK",
+			soundSrc: "../sounds/tink.wav"
+		},
+		{
+			keyCode: 76,
+			keyName: "L",
+			soundName: "TOM",
+			soundSrc: "../sounds/tom.wav"
+		}
+	];
+
+	const keysBody = document.querySelector(".keys-body");
+	const soundsBody = document.querySelector(".sounds-body");
+
+	let keysDom = "";
+	keysData.forEach(item => {
+		keysBody.innerHTML += `
+			<div class="keys-item key-${item.keyName}">
+				<span>${item.keyName}</span>
+				<span>${item.soundName}</span>
+			</div>
+		`;
+
+		soundsBody.innerHTML += `<audio class="sound-${item.keyName}" src="${item.soundSrc}"></audio>`;
+	});
+
+	function onDrum(e) {
+		const allSound = document.querySelectorAll("audio");
+
+		keysData.forEach(item => {
+			if (e.keyCode === item.keyCode) {
+				let curSound = document.querySelector(`audio[class="sound-${item.keyName}"]`);
+				curSound.play();
+			}
+		});
+	}
+
+	window.addEventListener("keyup", onDrum);
+
+</script>
+
+</html>
