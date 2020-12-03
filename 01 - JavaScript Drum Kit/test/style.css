@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url('https://i.imgur.com/b9r5sEL.jpg') bottom center;
+  background-size: cover;
 }
 
 .keys-body {
@@ -26,6 +28,13 @@
   margin-right: 10px;
   border: 5px solid black;
   background-color: yellow;
+  transition: all .2s ease;
+}
+
+.is-active {
+  background: red;
+  border-color: violet;
+  transform: scale(1.1);
 }
 
 .keys-item:last-child {

@@ -85,18 +85,30 @@
 		soundsBody.innerHTML += `<audio class="sound-${item.keyName}" src="${item.soundSrc}"></audio>`;
 	});
 
+	const keysItem = keysBody.querySelectorAll(".keys-item");
+
 	function onDrum(e) {
+		clearDrum();
 		const allSound = document.querySelectorAll("audio");
 
-		keysData.forEach(item => {
+		keysData.forEach((item, index) => {
 			if (e.keyCode === item.keyCode) {
 				let curSound = document.querySelector(`audio[class="sound-${item.keyName}"]`);
 				curSound.play();
+
+				keysItem[index].classList.add("is-active");
 			}
 		});
 	}
 
+	function clearDrum() {
+		keysItem.forEach(item => {
+			item.classList.remove("is-active");
+		});
+	}
+
 	window.addEventListener("keyup", onDrum);
+	window.addEventListener("transitionend", clearDrum);
 
 </script>
 
